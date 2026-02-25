@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,11 +21,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
+
+      # ✅ INSTALAR PNPM
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
+      - name: Build Astro
         run: pnpm build
 
       - name: Setup Pages
@@ -37,4 +45,3 @@ jobs:
 
       - name: Deploy
         uses: actions/deploy-pages@v4
-
