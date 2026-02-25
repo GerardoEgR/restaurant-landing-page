@@ -2,12 +2,11 @@ import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import astro from "eslint-plugin-astro";
 import astroParser from "astro-eslint-parser";
-import prettierPlugin from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
+import prettier from "eslint-config-prettier";
 
 export default [
 
-  // Ignorar carpetas generadas
+  // Ignorar archivos generados
   {
     ignores: [
       "dist",
@@ -16,16 +15,16 @@ export default [
     ]
   },
 
-  // Configuración base JS
+  // JavaScript base
   js.configs.recommended,
 
-  // Configuración recomendada TypeScript
+  // TypeScript moderno
   ...tseslint.configs.recommended,
 
-  // Configuración recomendada Astro
+  // Astro recomendado
   ...astro.configs.recommended,
 
-  // Soporte para archivos .astro
+  // Soporte correcto para archivos Astro
   {
     files: ["**/*.astro"],
     languageOptions: {
@@ -37,29 +36,22 @@ export default [
     }
   },
 
-  // Reglas personalizadas TS
+  // Reglas TypeScript personalizadas
   {
     files: ["**/*.ts", "**/*.tsx"],
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_" }
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_"
+        }
       ],
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/consistent-type-imports": "error"
     }
   },
 
-  // Integración Prettier (SIEMPRE al final)
-  prettierConfig,
-
-  {
-    plugins: {
-      prettier: prettierPlugin
-    },
-    rules: {
-      "prettier/prettier": "warn"
-    }
-  }
-
+  // ⚡ Prettier SIEMPRE al final (solo desactiva conflictos)
+  prettier
 ];
