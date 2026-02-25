@@ -6,5 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-  }
+  },
+  site: 'https://gerardodg.github.io',
+  base: '/restaurant-landing-page/',
+  output: 'static',
 });
