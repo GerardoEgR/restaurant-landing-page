@@ -1,0 +1,72 @@
+---
+interface FotoItem {
+  src: string;
+  alt: string;
+  label: string;
+}
+
+const fotos: FotoItem[] = [
+  {
+    src: "https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    alt: "Plato Gourmet",
+    label: "Platos de Autor",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Interior Restaurante",
+    label: "Ambiente",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Carne Premium",
+    label: "Cortes Premium",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1519690889869-e705e59f72e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Vinos",
+    label: "Cava",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Postre",
+    label: "Dulces",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    alt: "Chef Cocinando",
+    label: "Técnica",
+  },
+];
+---
+
+<section id="galeria" class="bg-[#121212] py-20">
+  <!-- Encabezado -->
+  <div class="mb-16 text-center">
+    <h2
+      class="mb-4 text-4xl text-white md:text-5xl"
+      style="font-family: 'Playfair Display', serif;"
+    >
+      Atmósfera &amp; Platos
+    </h2>
+    <div class="mx-auto mt-6 h-0.5 w-24 bg-[#d4af37]"></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {
+      fotos.map((foto) => (
+        <div class="group relative h-80 cursor-pointer overflow-hidden">
+          <img
+            src={foto.src}
+            alt={foto.alt}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span class="border border-[#d4af37] px-4 py-2 text-sm tracking-widest text-[#d4af37] uppercase">
+              {foto.label}
+            </span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

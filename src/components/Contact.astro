@@ -1,0 +1,199 @@
+<section id="contacto" class="relative bg-[#121212] py-20">
+  <div class="relative z-10 container mx-auto max-w-4xl px-6">
+    <!-- Card del formulario -->
+    <div class="reveal border border-white/5 bg-[#0a0a0a] p-8 shadow-2xl md:p-12">
+      <!-- Encabezado -->
+      <div class="mb-10 text-center">
+        <h3 class="mb-2 text-xs tracking-widest text-[#d4af37] uppercase">Su Mesa Espera</h3>
+        <h2 class="font-serif text-4xl text-white">Realizar Reserva</h2>
+      </div>
+
+      <!-- Formulario -->
+      <form id="bookingForm" class="space-y-6" novalidate>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-name"
+            >
+              Nombre Completo
+            </label>
+            <input
+              type="text"
+              id="res-name"
+              name="name"
+              required
+              class="w-full border-b border-gray-700 bg-transparent py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-phone"
+            >
+              Teléfono
+            </label>
+            <input
+              type="tel"
+              id="res-phone"
+              name="phone"
+              required
+              class="w-full border-b border-gray-700 bg-transparent py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-email"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="res-email"
+              name="email"
+              required
+              class="w-full border-b border-gray-700 bg-transparent py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-service"
+            >
+              Tipo de Experiencia
+            </label>
+            <select
+              id="res-service"
+              name="service"
+              class="w-full border-b border-gray-700 bg-[#0a0a0a] py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            >
+              <option>Cena A la Carta</option>
+              <option>Omakase Noir</option>
+              <option>Evento Privado</option>
+              <option>Fecha Especial</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-date"
+            >
+              Fecha
+            </label>
+            <input
+              type="date"
+              id="res-date"
+              name="date"
+              required
+              class="w-full border-b border-gray-700 bg-transparent py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            />
+          </div>
+          <div>
+            <label
+              class="mb-2 block text-xs tracking-widest text-gray-400 uppercase"
+              for="res-time"
+            >
+              Hora Preferida
+            </label>
+            <input
+              type="time"
+              id="res-time"
+              name="time"
+              required
+              class="w-full border-b border-gray-700 bg-transparent py-2 text-white transition-colors focus:border-[#d4af37] focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- Mensaje inline de éxito -->
+        <div
+          id="successMsg"
+          class="hidden border border-[#d4af37]/40 bg-[#d4af37]/5 py-3 text-center text-sm tracking-widest text-[#d4af37] uppercase"
+        >
+          ¡Solicitud enviada! Nos pondremos en contacto pronto.
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-6 text-center">
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full bg-[#d4af37] px-12 py-4 font-bold tracking-widest text-[#0a0a0a] uppercase shadow-lg transition-colors duration-300 hover:bg-white md:w-auto"
+          >
+            Confirmar Solicitud
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("bookingForm") as HTMLFormElement | null;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+  const successMsg = document.getElementById("successMsg") as HTMLElement | null;
+
+  form?.addEventListener("submit", (e: Event) => {
+    e.preventDefault();
+
+    const nameEl = document.getElementById("res-name") as HTMLInputElement;
+    const phoneEl = document.getElementById("res-phone") as HTMLInputElement;
+    const dateEl = document.getElementById("res-date") as HTMLInputElement;
+
+    const name = nameEl?.value.trim() ?? "";
+    const phone = phoneEl?.value.trim() ?? "";
+    const date = dateEl?.value ?? "";
+
+    // Validación básica
+    if (!name) {
+      nameEl?.focus();
+      nameEl?.setCustomValidity("Ingresa tu nombre completo.");
+      nameEl?.reportValidity();
+      return;
+    }
+    if (phone.length < 8) {
+      phoneEl?.focus();
+      phoneEl?.setCustomValidity("Ingresa un teléfono válido.");
+      phoneEl?.reportValidity();
+      return;
+    }
+    if (!date) {
+      dateEl?.focus();
+      dateEl?.setCustomValidity("Selecciona una fecha.");
+      dateEl?.reportValidity();
+      return;
+    }
+
+    // Limpiar validaciones previas
+    [nameEl, phoneEl, dateEl].forEach((el) => el?.setCustomValidity(""));
+
+    // Deshabilitar botón mientras "envía"
+    if (submitBtn) {
+      submitBtn.textContent = "Enviando…";
+      submitBtn.classList.add("opacity-75", "cursor-not-allowed");
+      submitBtn.disabled = true;
+    }
+
+    // Simular envío (1.5 s)
+    setTimeout(() => {
+      successMsg?.classList.remove("hidden");
+      form?.reset();
+
+      if (submitBtn) {
+        submitBtn.textContent = "Confirmar Solicitud";
+        submitBtn.classList.remove("opacity-75", "cursor-not-allowed");
+        submitBtn.disabled = false;
+      }
+
+      // Ocultar mensaje de éxito después de 6 s
+      setTimeout(() => successMsg?.classList.add("hidden"), 6000);
+    }, 1500);
+  });
+</script>

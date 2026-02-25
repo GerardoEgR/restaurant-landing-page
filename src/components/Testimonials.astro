@@ -1,0 +1,72 @@
+---
+interface Testimonio {
+  texto: string;
+  nombre: string;
+  rol: string;
+  avatar: string;
+}
+
+const testimonios: Testimonio[] = [
+  {
+    texto:
+      "El ambiente es hipnótico. La comida no solo es deliciosa, es visualmente impactante. Un lugar para impresionar.",
+    nombre: "Carlos M.",
+    rol: "CEO",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    texto:
+      "Reservamos el salón privado para un evento corporativo. El servicio fue impecable, invisible pero siempre presente.",
+    nombre: "Elena R.",
+    rol: "Arquitecta",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    texto:
+      "La carta de vinos es excepcional. La estética 'Noir' se siente en cada rincón. Definitivamente el mejor sitio de la ciudad.",
+    nombre: "Javier S.",
+    rol: "Sommelier",
+    avatar: "https://randomuser.me/api/portraits/men/85.jpg",
+  },
+];
+---
+
+<section id="testimonios" class="py-20 bg-[#0a0a0a] border-t border-white/5">
+  <div class="container mx-auto px-6">
+
+    <h2 class="text-4xl text-white text-center mb-16 reveal"
+      style="font-family: 'Playfair Display', serif;">
+      La Voz de la Experiencia
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {testimonios.map((t) => (
+        <div class="bg-[#121212] p-8 relative mt-6 reveal">
+
+          <!-- Avatar flotante sobre la card -->
+          <div class="absolute -top-6 left-1/2 -translate-x-1/2">
+            <img
+              src={t.avatar}
+              alt={t.nombre}
+              class="w-12 h-12 rounded-full border-2 border-[#d4af37]"
+            />
+          </div>
+
+          <!-- Estrellas -->
+          <div class="text-[#d4af37] text-center text-xl mb-4 mt-4">★★★★★</div>
+
+          <!-- Reseña -->
+          <p class="text-gray-400 text-sm text-center italic mb-4">
+            "{t.texto}"
+          </p>
+
+          <!-- Autor -->
+          <p class="text-white text-center font-bold text-xs tracking-widest uppercase">
+            {t.nombre} — {t.rol}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

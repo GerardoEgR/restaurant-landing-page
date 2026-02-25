@@ -1,0 +1,66 @@
+---
+interface Servicio {
+  icon: string;
+  titulo: string;
+  descripcion: string;
+}
+
+const servicios: Servicio[] = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="53" height="43" viewBox="0 0 640 512"><path fill="#d4af37" d="M639.4 433.6c-8.4-20.4-31.8-30.1-52.2-21.6l-22.1 9.2l-38.7-101.9c47.9-35 64.8-100.3 34.5-152.8L474.3 16c-8-13.9-25.1-19.7-40-13.6L320 49.8L205.7 2.4c-14.9-6.2-32-.3-40 13.6L79.1 166.5C48.9 219 65.7 284.3 113.6 319.2L74.9 421.1l-22.1-9.2c-20.4-8.5-43.7 1.2-52.2 21.6c-1.7 4.1.2 8.8 4.3 10.5l162.3 67.4c4.1 1.7 8.7-.2 10.4-4.3c8.4-20.4-1.2-43.8-21.6-52.3l-22.1-9.2L173.3 342c4.4.5 8.8 1.3 13.1 1.3c51.7 0 99.4-33.1 113.4-85.3l20.2-75.4l20.2 75.4c14 52.2 61.7 85.3 113.4 85.3c4.3 0 8.7-.8 13.1-1.3L506 445.6l-22.1 9.2c-20.4 8.5-30.1 31.9-21.6 52.3c1.7 4.1 6.4 6 10.4 4.3L635.1 444c4-1.7 6-6.3 4.3-10.4M275.9 162.1l-112.1-46.5l36.5-63.4l94.5 39.2zm88.2 0l-18.9-70.7l94.5-39.2l36.5 63.4z"/></svg>`,
+    titulo: "Eventos Privados",
+    descripcion:
+      'El sótano "The Vault" está disponible para cenas íntimas y negociaciones de alto nivel. Privacidad absoluta y servicio de mayordomo dedicado.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="53" height="43" viewBox="0 0 24 24"><path fill="#d4af37" d="M10.74 12.25L12 9.5l1.25 2.75L16 13.5l-2.75 1.26L12 17.5l-1.26-2.74L8 13.5zM16 3V1h2v2h1c.53 0 1.04.21 1.41.59c.38.37.59.88.59 1.41v14c0 .53-.21 1.04-.59 1.41c-.37.38-.88.59-1.41.59H5c-.53 0-1.04-.21-1.41-.59C3.21 20.04 3 19.53 3 19V5c0-.53.21-1.04.59-1.41C3.96 3.21 4.47 3 5 3h1V1h2v2zM5 8v11h14V8z"/></svg>`,
+    titulo: "Fechas Especiales",
+    descripcion:
+      "Menús diseñados exclusivamente para San Valentín, Año Nuevo y Aniversarios. Maridaje de vinos de nuestra cava subterránea de 1920.",
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="53" height="43" viewBox="0 0 416 512"><path fill="#d4af37" d="M207.9 15.2c.8 4.7 16.1 94.5 16.1 128.8c0 52.3-27.8 89.6-68.9 104.6L168 486.7c.7 13.7-10.2 25.3-24 25.3H80c-13.7 0-24.7-11.5-24-25.3l12.9-238.1C27.7 233.6 0 196.2 0 144C0 109.6 15.3 19.9 16.1 15.2C19.3-5.1 61.4-5.4 64 16.3v141.2c1.3 3.4 15.1 3.2 16 0c1.4-25.3 7.9-139.2 8-141.8c3.3-20.8 44.7-20.8 47.9 0c.2 2.7 6.6 116.5 8 141.8c.9 3.2 14.8 3.4 16 0V16.3c2.6-21.6 44.8-21.4 48-1.1m119.2 285.7l-15 185.1c-1.2 14 9.9 26 23.9 26h56c13.3 0 24-10.7 24-24V24c0-13.2-10.7-24-24-24c-82.5 0-221.4 178.5-64.9 300.9"/></svg>`,
+    titulo: "Omakase Noir",
+    descripcion:
+      "Déjese llevar por el chef. Una degustación de 12 tiempos a ciegas utilizando ingredientes raros y de temporada importados diariamente.",
+  },
+];
+---
+
+<section id="servicios" class="bg-[#121212] py-20">
+  <div class="container mx-auto px-6">
+    <!-- Encabezado -->
+    <div class="reveal mb-16 text-center">
+      <h3
+        class="mb-2 text-sm font-bold tracking-widest text-[#d4af37] uppercase"
+        style="font-family: 'Lato', sans-serif;"
+      >
+        Nuestras Propuestas
+      </h3>
+      <h2
+        class="mb-4 text-4xl text-white md:text-5xl"
+        style="font-family: 'Playfair Display', serif;"
+      >
+        Eventos &amp; Servicios
+      </h2>
+
+      <div class="mx-auto h-1 w-24 bg-[#d4af37]"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        servicios.map((s) => (
+          <div class="group reveal justify-self-center border border-white/5 bg-[#1a1a1a] p-8 transition-all duration-300 hover:-translate-y-2 hover:border-[#d4af37]/50">
+            <div
+              class="mb-6 h-10 w-10 justify-self-center text-[#d4af37] transition-transform group-hover:scale-110"
+              set:html={s.icon}
+            />
+            <h3 class="mb-4 text-center font-serif text-2xl text-white">{s.titulo}</h3>
+            <p class="mb-6 text-sm leading-relaxed font-light text-gray-400">{s.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
